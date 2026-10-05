@@ -34,5 +34,6 @@ private class Exercice3_Competitor_Test {
         Competitor__c comp = new Competitor__c(Name='competitor1', Account__c=Acc1.Id, Quote__c=quote1.Id);
 
         Database.insert(comp, false);
+        //this is a comment to test git
     }
 }
