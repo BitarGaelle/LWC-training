@@ -1,0 +1,14 @@
+trigger ErrorMessageTrigger on Error_Message__e (after insert) {
+
+    List<Error_log__c> errs = new List<Error_log__c>();
+    
+    // TODO #1:  Loop through trigger.new and create Error_Log__c records 
+    //   for each platform event and add to the errs list
+    for (Error_Message__e evt : Trigger.new) {
+        Error_log__c err = new Error_log__c();
+        err.Source__c = evt.Source_Component__c;
+        err.Message__c = evt.Error_Message__c;
+        errs.add(err);
+    }
+    insert errs;
+}
