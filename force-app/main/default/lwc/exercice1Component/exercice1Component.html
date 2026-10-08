@@ -1,0 +1,13 @@
+<template>
+    <lightning-card>
+        <lightning-combobox name="departments" label="Select Department" value={dep_value} options={options} onchange={handleChange}>
+        </lightning-combobox>
+        <p>Selected Value: {dep_value}</p>
+
+        <lightning-button
+            label = "click to get employees"
+            onclick={get_emp_onClick}>
+        </lightning-button>
+        <p>Employees: {emp_value}</p>
+    </lightning-card>
+</template>
