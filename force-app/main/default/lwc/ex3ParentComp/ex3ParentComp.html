@@ -1,0 +1,44 @@
+<template>
+
+<lightning-card title="Child Details" icon-name="standard:user">
+    <div class="slds-p-horizontal_medium">
+        <p class="slds-text-body_regular">
+            <strong class="slds-text-title_bold">Child 1: </strong> 
+            <lightning-formatted-text value={child1Status}></lightning-formatted-text>
+        </p>
+    </div>
+
+    <div class="slds-p-horizontal_medium">
+        <p class="slds-text-body_regular">
+            <strong class="slds-text-title_bold">Child 2: </strong> 
+            <lightning-formatted-text value={child2Status}></lightning-formatted-text>
+        </p>
+    </div>
+
+    <lightning-layout>
+
+        <lightning-card  variant="Narrow" icon-name="standard:contact">
+            <div class="slds-var-m-around_medium">
+                <lightning-layout-item padding="around-small">
+                    <c-ex3-child-comp
+                    onstatuschange={handleChange} 
+                    number='1'
+                    class="slds-var-m-right_x-small"></c-ex3-child-comp>
+                </lightning-layout-item>    
+            </div>
+        </lightning-card>
+    
+        <lightning-card  variant="Narrow" icon-name="standard:contact">
+            <div class="slds-var-m-around_medium">
+                <lightning-layout-item padding="around-small">
+                    <c-ex3-child-comp 
+                    onstatuschange={handleChange} 
+                    number='2'
+                    class="slds-var-m-right_x-small"></c-ex3-child-comp>
+                </lightning-layout-item>
+            </div>
+        </lightning-card>
+
+    </lightning-layout>
+</lightning-card>
+</template>
