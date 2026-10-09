@@ -1,0 +1,24 @@
+<template>
+    <div class="slds-size_1-of-4">
+        <lightning-input 
+        type="number" 
+        name="inputnumber"
+        label="Enter a max record numbers"
+        value={maxRecords} 
+        onchange={handleNumbChange}></lightning-input>
+    </div>
+        <div class="slds-size_1-of-4">
+        <lightning-input 
+        type="text" 
+        name="inputAccName"
+        label="Enter Account Name"
+        value={accountName} 
+        onchange={handleNameChange}></lightning-input>
+        <lightning-button label="Create Account" onclick={handleClickButton}></lightning-button>
+    </div>
+    <template for:each={accounts} for:item="acc">
+        <div key={acc.Id}>
+            {acc.Name}
+        </div>
+    </template>
+</template>

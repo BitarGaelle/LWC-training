@@ -4,7 +4,7 @@
     "workbench.editor.enablePreview": false,
     "editor.minimap.enabled": false,
     "editor.mouseWheelZoom": true,
-    "files.autoSave": "off",
+    "files.autoSave": "afterDelay",
     "salesforcedx-vscode-core.retrieve-test-code-coverage": true,
     "salesforcedx-vscode-core.push-or-deploy-on-save.enabled": false,
     "salesforcedx-vscode-core.enable-sobject-refresh-on-startup": false,
