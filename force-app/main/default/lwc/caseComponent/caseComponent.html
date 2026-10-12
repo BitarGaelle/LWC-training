@@ -1,0 +1,12 @@
+<template>
+    <div style="height: 300px;">
+        <div class="slds-m-around_medium">
+            <lightning-input type="text" value={caseNb} onchange={handleChange}></lightning-input>
+        </div>
+        <lightning-datatable
+                key-field="Id"
+                data={cases}
+                columns={columns}>
+        </lightning-datatable>
+    </div>
+</template>
