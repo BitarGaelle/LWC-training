@@ -1,0 +1,82 @@
+<template>
+    <lightning-card title="Contact view" icon-name="standard:contact">
+        <lightning-button
+        slot="actions"
+        label="Create Contact"
+        icon-name="utility:add_relationship"
+        variant="brand"
+        onclick={openModal}
+        ></lightning-button>
+        <div class="slds-grid slds-wrap slds-gutter_small slds-var-p-around_small">
+            <template if:true={contacts}>
+                <template for:each={contacts} for:item="contact">
+                    <div key={contact.Id} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-var-m-bottom_small">
+                        
+                        <lightning-card
+                            title={contact.Name}
+                            icon-name="standard:contact">
+                                <lightning-button-icon
+                                slot="actions"
+                                icon-name="utility:delete"
+                                title="delete"
+                                data-id={contact.Id}
+                                onclick={handleDelete}>
+                                </lightning-button-icon>
+                    
+                            <div class="slds-var-p-horizontal_small">
+                                <p class="slds-var-m-bottom_xx-small">
+                                    <strong>Email: {contact.Email}</strong>
+                                    <strong>Phone: {contact.Phone}</strong>
+                                </p>
+                            </div>
+                        </lightning-card>
+                    </div>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+
+    <!-- Create a new contact -->
+    <template if:true={isModelOpen}>
+        <lightning-card title="Create New Contact" icon-name="standard:contact_form" class="slds-var-m-bottom_medium">
+        <!-- to create the model itself -->
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 class="slds-text-heading_medium">Create New Contact</h2>
+                    </header>
+
+                    <div class="slds-modal_content slds-var-p-around_medium">
+                        <lightning-record-edit-form
+                            object-api-name="Contact"
+                            onsuccess={handleSuccess}
+                            onerror={handleError}>
+                            <!-- for validation rules' errors to show -->
+                            <lightning-messages></lightning-messages> 
+
+                            <div class="slds-hide">
+                                <lightning-input-field field-name="AccountId" value={recordId}></lightning-input-field>
+                            </div>
+                            <lightning-input-field field-name="FirstName"></lightning-input-field>
+                            <lightning-input-field field-name="LastName"></lightning-input-field>
+                            <lightning-input-field field-name="Email"></lightning-input-field>
+                            <lightning-input-field field-name="Phone"></lightning-input-field>
+
+                            <div class="slds-var-m-top_medium slds-text-align_right">
+                                <lightning-button
+                                    class="slds-var-m-right_small"
+                                    label="Cancel"
+                                    onclick={closeModel}>
+                                </lightning-button>
+                                <lightning-button
+                                    type="submit"
+                                    label="Save Contact">
+                                </lightning-button>
+                            </div>
+                        </lightning-record-edit-form>
+                    </div>
+                </div>
+            </section>
+        </lightning-card>
+    </template>
+</template>
