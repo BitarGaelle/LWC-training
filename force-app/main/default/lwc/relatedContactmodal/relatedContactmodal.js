@@ -1,13 +1,9 @@
 import { LightningElement, api, wire } from 'lwc';
 import getContacts from "@salesforce/apex/AccContactController.getContacts";
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import { deleteRecord,createRecord } from 'lightning/uiRecordApi';
+import { deleteRecord } from 'lightning/uiRecordApi';
 import { refreshApex } from "@salesforce/apex";
 
-
-//importing account object and name field->integrity
-import ACCOUNT_OBJECT from "@salesforce/schema/Account";
-import ACCOUNT_NAME_FIELD from "@salesforce/schema/Account.Name";
 
 export default class RelatedContactmodal extends LightningElement {
 
@@ -15,6 +11,7 @@ export default class RelatedContactmodal extends LightningElement {
     errors;
     contacts;
     isModelOpen = false;
+
 
     columns = [
         {label: 'FirstName', fieldName: 'FirstName', type: 'text'},
@@ -72,4 +69,5 @@ export default class RelatedContactmodal extends LightningElement {
     showToast(title, message, variant) {
         this.dispatchEvent(new ShowToastEvent({ title, message, variant }));
     }
+
 }
