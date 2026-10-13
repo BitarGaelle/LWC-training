@@ -4,7 +4,8 @@
             <lightning-record-edit-form
                 object-api-name="Quote"
                 onsuccess={handleSuccess}
-                onerror={handleError}>
+                onerror={handleError}
+                onsubmit={handleSubmit}>
                 <!-- for validation rules' errors to show -->
                 <lightning-messages></lightning-messages> 
 
@@ -16,10 +17,12 @@
                 </div>
                 <div class="slds-box slds-m-top_small">
                     <div class="slds-col">
-                        <lightning-input-field field-name="Start_Date__c" ></lightning-input-field>
+                        <lightning-input-field field-name="Start_Date__c" onchange={handleS_Date}></lightning-input-field>
                     </div>
-                    <div class="slds-col">
-                        <lightning-input-field field-name="End_Date__c" ></lightning-input-field>
+                    <div if:false={isLandType}>
+                        <div class="slds-col">
+                            <lightning-input-field field-name="End_Date__c" ></lightning-input-field>
+                        </div>
                     </div>
                     <div class="slds-col">
                         <lightning-input-field field-name="Payment_Terms__c" ></lightning-input-field>
@@ -30,6 +33,17 @@
                     <div if:true={isRetailType}>
                         <div class="slds-grid">
                             <lightning-input-field field-name="Retail_Sales_Category__c" ></lightning-input-field>
+                        </div>
+                    </div>
+                    <div if:true={isLandType}>
+                        <div class="slds-grid">
+                            <lightning-input-field field-name="Duration__c" ></lightning-input-field>
+                        </div>
+                        <div class="slds-grid">
+                            <lightning-input-field field-name="Rent_Review_Frequency__c" ></lightning-input-field>
+                        </div>
+                        <div class="slds-hide">
+                            <lightning-input-field field-name="End_Date__c" ></lightning-input-field>
                         </div>
                     </div>
                 </div>

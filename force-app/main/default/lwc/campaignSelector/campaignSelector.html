@@ -1,0 +1,82 @@
+<template>
+    <lightning-card title="Available Campaigns" icon-name="standard:campaign">
+        <div class="slds-var-p-around_medium slds-is-relative">
+
+            <template if:false={campaignwrappers}>
+                <template if:false={errors}>
+                    <lightning-spinner
+                        alternative-text="Loading campaigns.."
+                        size="medium"
+                        variant="brand">
+                    </lightning-spinner>
+                </template>
+            </template>
+
+            <template if:true={campaignwrappers}>
+                <div class="slds-grid slds-wrap">
+                    <template for:each={campaignwrappers} for:item="camp">
+
+                        <template lwc:if={camp.isenrolled}>
+                            <div key={camp.campaignId} class="slds-size_1-of-1 slds-var-m-bottom_small slds-box slds-box_x-small">
+                                <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+
+                                    <div class="slds-grid slds-grid_vertical-align-center">
+                                        <lightning-input
+                                            type="checkbox"
+                                            disabled
+                                            class="slds-var-m-right_medium">
+                                        </lightning-input>
+                                        <div>
+                                            <h3 class="slds-text-heading_small slds-truncate">{camp.campaignName}</h3>
+                                            <p class="slds-text-color_weak">Type: {camp.campaignType} | Status: {camp.campaignStatus}</p>
+                                            <p class="slds-text-body_small">
+                                                Date: {camp.startdate} to {camp.enddate}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="slds-grid slds-grid_vertical-align-center">
+                                        <template if:true={camp.isactivestatus}>
+                                            <span class="slds-badge slds-theme_success slds-var-m-right_x-small">Active</span>
+                                        </template>
+
+                                        <template if:true={camp.isenrolled}>
+                                            <span class="slds-badge slds-theme_warning slds-var-m-right_x-small">Is Enrolled</span>
+                                        </template>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </template>
+                        <template lwc:else>
+                            <div key={camp.campaignId} class="slds-size_1-of-1 slds-var-m-bottom_small slds-box slds-box_x-small">
+                                <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+                                    <div class="slds-grid slds-grid_vertical-align-center">
+                                        <lightning-input
+                                            type="checkbox"
+                                            value={camp.campaignId}
+                                            onchange={handleCheckbox}
+                                            class="slds-var-m-right_medium">
+                                        </lightning-input>
+                                        <div>
+                                            <h3 class="slds-text-heading_small slds-truncate">{camp.campaignName}</h3>
+                                            <p class="slds-text-color_weak">Type: {camp.campaignType} | Status: {camp.campaignStatus}</p>
+                                            <p class="slds-text-body_small">
+                                                Date: {camp.startdate} to {camp.enddate}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="slds-grid slds-grid_vertical-align-center">
+                                        <template if:true={camp.isactivestatus}>
+                                            <span class="slds-badge slds-theme_success slds-var-m-right_x-small">Active</span>
+                                        </template>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </template>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
