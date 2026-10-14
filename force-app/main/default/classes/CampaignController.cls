@@ -1,7 +1,7 @@
 public with sharing class CampaignController {
 
     @AuraEnabled
-    public static void CreatCampMembers(String leadId, List<String> campaignIds){
+    public static void CreateCampMembers(String leadId, List<String> campaignIds){
         if (String.isBlank(leadId) || campaignIds == null || campaignIds.isEmpty()){
             system.debug('empty leadId/campaign ids');
             return;
@@ -59,6 +59,7 @@ public with sharing class CampaignController {
 
             wrap.isenrolled = assignedCampaignIds.contains(c.Id);
             results.add(wrap);
+            System.debug('Raw wrapper data:' + wrap);
         }
         return results;
     }
