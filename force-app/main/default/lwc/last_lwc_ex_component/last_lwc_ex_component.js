@@ -17,5 +17,13 @@ export default class Last_lwc_ex_component extends LightningElement {
             this.currentStep = targetStep;
             return;
         }
+
+        const allInputs = [...this.template.querySelectorall('lightning-input')];
+        const allValid = allInputs.every(input => input.reportValidity()); //check for blank or missing fields
+
+        if (allValid) {
+            this.currentStep = targetStep;
+        }
+
     }
 }
