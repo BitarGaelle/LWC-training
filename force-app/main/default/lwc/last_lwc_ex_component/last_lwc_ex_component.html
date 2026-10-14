@@ -1,0 +1,60 @@
+<template>
+    <lightning-progress-indicator
+        current-step={currentStep}
+        type="path"
+        variant="base">
+        
+            <lightning-progress-step
+                label="Company Information"
+                value="1"
+                onstepfocus={handleStep}>
+            </lightning-progress-step>
+
+            <lightning-progress-step
+                label="Members"
+                value="2"
+                onstepfocus={handleStep}>
+            </lightning-progress-step>
+
+            <lightning-progress-step
+                label="Shipping Information"
+                value="3"
+                onstepfocus={handleStep}>
+            </lightning-progress-step>
+
+            <lightning-progress-step
+                label="Documents"
+                value="4"
+                onstepfocus={handleStep}>
+            </lightning-progress-step>
+
+    </lightning-progress-indicator>
+
+    <div class="slds-m-top_medium">
+
+        <template lwc:if={stepOne}>
+            <div>
+                <h3>company info form</h3>
+            </div>
+        </template>
+
+        <template lwc:if={stepTwo}>
+            <div>
+                <h3>Members form</h3>
+            </div>
+        </template>
+
+        <template lwc:if={stepThree}>
+            <div>
+                <h3>Shipping info form</h3>
+            </div>
+        </template>
+
+        <template lwc:if={stepFour}>
+            <div>
+                <h3>Documents form</h3>
+            </div>
+        </template>
+    </div>
+
+</template>
